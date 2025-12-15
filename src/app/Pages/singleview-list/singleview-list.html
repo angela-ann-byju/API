@@ -1,0 +1,16 @@
+<div style="padding: 20px">
+  
+  <h2 *ngIf="product?.title">{{ product.title }}</h2>
+
+  <img
+    *ngIf="product?.thumbnail"
+    [src]="product.thumbnail"
+    width="300"
+    alt="Product image"
+  />
+
+  <p><strong>Price:</strong> {{ product?.price }}</p>
+
+  <p><strong>Description:</strong> {{ product?.description }}</p>
+
+</div>

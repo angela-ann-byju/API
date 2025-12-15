@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Root wrapper */
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Router content expands */
+.page-content {
+  flex: 1;
+}
+
