@@ -1,17 +1,17 @@
-import { Component, ChangeDetectorRef } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { CommonModule } from "@angular/common";
-import { Apiservices } from "../../apiservices";
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Apiservices } from '../../apiservices';
 
 @Component({
-  selector: "app-singleview-list",
+  selector: 'app-singleview-list',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: "./singleview-list.html",
+  templateUrl: './singleview-list.html'
 })
-export class SingleviewList {
+export class SingleviewList implements OnInit {
 
-  product: any = {};
+  product: any = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,16 +20,22 @@ export class SingleviewList {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get("id");
 
-      if (id) {
-        this.api.getsingleProducts(id).subscribe((res: any) => {
-          this.product = res;
-          console.log("PRODUCT LOADED:", res);
-          this.cdr.detectChanges();   // 🔥 IMPORTANT FIX
-        });
-      }
+    this.route.paramMap.subscribe(params => {
+
+      const id = params.get('id');
+      if (!id) return;
+
+      this.product = null;
+
+      this.api.getSingleProduct(id).subscribe(res => {
+
+        this.product = res;
+        console.log('PRODUCT LOADED:', res);
+
+        // 🔥 force refresh UI
+        this.cdr.detectChanges();
+      });
     });
   }
 }

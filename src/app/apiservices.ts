@@ -2,15 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class Apiservices {
-  constructor(private http:HttpClient) { }
+
+  base = 'https://fakestoreapi.com/products';
+
+  constructor(private http: HttpClient) {}
+
   getProduct() {
-    return this.http.get("https://dummyjson.com/products")
+    return this.http.get(this.base);
   }
-  getsingleProducts(id:string) {
-    return this.http.get(`https://dummyjson.com/products/${id}`);
+
+  getSingleProduct(id: string) {
+    return this.http.get(`${this.base}/${id}`);
   }
 }
-

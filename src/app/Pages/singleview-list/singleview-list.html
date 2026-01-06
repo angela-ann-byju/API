@@ -1,15 +1,18 @@
-<div style="padding: 20px">
-  
-  <h2 *ngIf="product?.title">{{ product.title }}</h2>
+<h2>Single Product View</h2>
 
-  <img
-    *ngIf="product?.thumbnail"
-    [src]="product.thumbnail"
-    width="300"
-    alt="Product image"
+<div *ngIf="!product?.id">Loading...</div>
+
+<div *ngIf="product?.id">
+
+  <h3>{{ product?.title }}</h3>
+
+  <img 
+    *ngIf="product?.image"
+    [src]="product?.image"
+    width="280"
   />
 
-  <p><strong>Price:</strong> {{ product?.price }}</p>
+  <p><strong>Price:</strong> ₹ {{ product?.price }}</p>
 
   <p><strong>Description:</strong> {{ product?.description }}</p>
 
